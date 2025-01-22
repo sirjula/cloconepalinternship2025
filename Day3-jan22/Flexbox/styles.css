@@ -1,0 +1,102 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+body{
+    font-family:Arial, sans-serif;
+    line-height: 1.5;
+    color: #333;
+  }
+ header{
+  background: rgb(61, 57, 57);
+  color:beige;
+  padding: 10px;
+ }
+
+ nav{
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  max-width: 1500px;
+  margin: 0 auto;
+ }
+ nav ul{
+  list-style: none;
+  display: flex;
+  gap:5rem ;
+ }
+ nav ul li a{
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+ }
+
+ main {
+  padding: 25px 80px ;
+  margin: 50px;
+  width: 100%;
+  display: flex;
+  gap:5rem;
+}
+
+ article {
+  background: #eaf0f7;
+  padding: 5rem;
+  position:relative;
+  border-radius: 2rem ;
+  width: 50%;
+}
+
+.badge {
+  position: absolute;
+  padding: 0.5rem;
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  height:50px;
+  width:50px;
+  top: -20px;
+  right:-20px;
+  }
+
+  .card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap:2rem;
+    padding: 0.5rem;
+   
+  }
+  .card {
+    background: white;
+    padding: 20px 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px hsla(0, 0%, 0%, 0.1);
+  }
+
+  aside{
+    position: sticky;
+    justify-items:center ;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 8px;
+    height: 150px;
+    left:100px;
+  }
+footer {
+  position: fixed;
+  padding: 2rem;
+  width: 100%;
+  background: #333;
+  color: white;
+  bottom: 0;
+  
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+
+}
