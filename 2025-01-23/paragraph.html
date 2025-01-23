@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button and Paragraph</title>
+    <style>
+        button{
+            background:green;
+            width:80px;
+            height:50px;
+        }
+    </style>
+</head>
+<body>
+    <p id="para">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla at, sapiente possimus, asperiores eius aperiam non assumenda deserunt quidem sunt nostrum ut corrupti est provident quo natus voluptatum libero quos.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias cumque qui, assumenda odit eum velit? Enim debitis modi aspernatur illum tempore vitae error expedita vel quas, reprehenderit ducimus unde ullam!
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet nobis dignissimos quas, maxime dolores cumque! Iure, laborum ut culpa dolorum officia et nemo aliquid consequuntur rem quo vitae quod alias?
+    </p>
+    <button onclick="change(this)">Change</button>
+    <script>
+        function change(button){
+            document.getElementById("para").innerHTML ="New Paragraph.The paragrapg is changed!!!!!";
+            const newParagraph = document.createElement('p');
+            newParagraph.innerText = 'New paragraph added dynamically.';
+            document.body.appendChild(newParagraph);
+            if(
+                button.style.backgroundColor==="red"){
+                button.style.backgroundColor="green";
+                }else{
+                    button.style.backgroundColor="red";
+                }
+            
+            }
+
+    </script>
+
+</body>
+</html>
