@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form</title>
+    <style>
+      /* General body styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  padding: 20px;
+  margin: 0;
+}
+
+/* Center the form on the page */
+form {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  
+}
+
+/* Heading styles */
+h1#title {
+  text-align: center;
+  color: #2d3e50;
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+#description {
+  text-align: center;
+  color: #888;
+  margin-bottom: 30px;
+}
+
+/* Form fieldset styles */
+fieldset {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+legend {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #333;
+  padding: 0 10px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+textarea {
+  height: 100px;
+}
+
+/* Error message styles */
+.error{
+  color: red;
+  font-size: 0.9em;
+  margin-top: 5px;
+}
+
+/* Submit button styles */
+#submitBtn {
+  text-align: center;
+}
+
+button[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/* Layout for the checkbox and radio buttons */
+p {
+  margin: 10px 0;
+}
+
+/* Style for the checkboxes and radios for better spacing */
+p input[type="checkbox"],
+p input[type="radio"] {
+  margin-right: 10px;
+}
+
+/* Form reset and submit button styling */
+#submitBtn button {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+#submitBtn button:hover {
+  background-color: #45a049;
+}
+/* Output section styling */
+#output {
+        text-align:center;
+        margin:20px auto;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 800px; /* Optional: set a max width for the output */
+      }
+    </style>
+  </head>
+  <body>
+    <form name="Form" >
+      <h1 id="title">Application for Permission to Date My Daughter</h1>
+      <p id="description">
+        <b>Note:</b> Form must be completed at least 21 days prior to the date.
+      </p>
+
+      <fieldset>
+        <legend>Personal Details</legend>
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Enter your name" onchange="validateName()"
+            required 
+          />
+          <div class="error"id="nameError"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="address">Address:</label>
+          <input
+            type="text"
+            name="address"
+            id="address"
+            placeholder="Enter your address" onchange="validateAddress()"
+            required 
+          />
+          <div class="error" id="addressError"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Enter your email"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="number">Phone Number:</label>
+          <input
+            type="tel"
+            name="number"
+            id="phone"
+            placeholder="Enter 10-digit phone number" onchange="validatePhone()"
+            required 
+          />
+          <div class="error" id="phoneError"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="iq">IQ:</label>
+          <input type="number" name="iq" id="iq" placeholder="Enter your IQ" 
+          onchange="validateIQ()"/>
+          <div class="error" id="iqError"></div>
+        </div>
+
+        <p>
+          <label>Gender:</label><br />
+          <input type="radio" name="gender" id="male" value="male" required />
+          Male<br />
+          <input type="radio" name="gender" id="female" value="female" />
+          Female<br />
+          <input type="radio" name="gender" id="other" value="other" /> Other
+        </p>
+
+        <label for="date">Date of Proposed Outing:</label>
+        <input type="date" name="date" id="date" required />
+      </fieldset>
+
+      <fieldset>
+        <label for="requirement">Check All That Apply</label>
+        <p>
+          <input type="checkbox" id="ch1" onchange="validateCheckbox()"/> I have tattoos and/or piercings<br />
+          <input type="checkbox" id="ch2" onchange="validateCheckbox()"/> I am more than 2 years older than
+          your daughter<br />
+          <input type="checkbox" id="ch3" onchange="validateCheckbox()"/> I own a panel van or V8 ute<br />
+          <input type="checkbox" id="ch4" onchange="validateCheckbox()"/> I work full-time<br />
+          <input type="checkbox" id="ch5" onchange="validateCheckbox()"/> My parents are rich<br />
+          <input type="checkbox" id="ch6" onchange="validateCheckbox()"/> The date is at a well-lit public
+          location <br /> 
+        </p>
+        <div class="error" id="checkboxError"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Other Details</legend>
+        <label for="politics">Political Persuasion:</label>
+        <select id="dropdown">
+          <option value="left">Left Wing</option>
+          <option value="right">Right Wing</option>
+          <option value="conservative">Conservative</option>
+          <option value="nazi">Nazi</option></select
+        ><br />
+
+        <label for="education">Education Level Completed:</label>
+        <select id="dropdown2">
+          <option value="university">University</option>
+          <option value="college">College</option>
+          <option value="secondary">High School</option>
+          <option value="none">None</option>
+        </select>
+      </fieldset>
+
+      <fieldset>
+        <legend>Essay Section</legend>
+        <div>
+          <p>In 50 words or more explain why you want to date my daughter</p>
+          <textarea
+            id="msg"
+            name="user_message"
+            rows="4"
+            cols="50"
+            placeholder="Enter Text Here" onchange="validateEssay()" required
+          ></textarea>
+          <div class="error" id="essayError"></div>
+        </div>
+        <div>
+          <p>Please upload contact details for 2 references</p>
+          <textarea
+            id="msg2"
+            name="user_message"
+            rows="4"
+            cols="50"
+            placeholder="Enter Text Here"
+          ></textarea>
+        </div>
+        <p>
+          Upload Police Clearance Certificate, Bank Statement and Medical
+          Certifiates here: <button>Attach Files</button>
+        </p>
+      </fieldset>
+
+      <div id="submitBtn">
+        <button type="submit" id="submit" onclick="validate(event)">
+          Submit Application
+        </button>
+      </div>
+    </form>
+    <div id="output">
+      <!-- Output will be displayed here -->
+    </div>
+    <!-- Form Validation -->
+    <script type="text/javascript">
+      function validateName() {
+        //event.preventDefault(); // Prevent default form submission
+        let isValid = true; // Flag to track if the form is valid
+
+        // Name validation
+        const name = document.getElementById("name").value;
+        const nameError = document.getElementById("nameError");
+
+        if (name.length < 3 || name.length > 20) {
+          nameError.textContent = "Name must be between 3 and 20 characters.";
+          return false;
+        } else {
+          nameError.textContent = "";
+          return true;
+        }
+      }
+
+        // Address validation
+      function validateAddress() {
+        const address = document.getElementById("address").value;
+        const addressError = document.getElementById("addressError");
+
+        if (address.length < 4 || address.length > 20) {
+          addressError.textContent =
+            "Address must be between 4 and 20 characters.";
+            return false;
+        } else {
+          addressError.textContent = "";
+          return true;
+        }
+      }
+
+        // Phone validation
+        function validatePhone() {
+        const phone = document.getElementById("phone").value;
+        const phoneError = document.getElementById("phoneError");
+        const phoneRegex = /^\d{10}$/;
+        if (!phoneRegex.test(phone)) {
+          phoneError.textContent = "Phone number must be a 10-digit number.";
+          return false;
+        } else {
+          phoneError.textContent = "";
+          return true;
+        }
+      }
+        // IQ validation
+        function validateIQ() {
+        const iq = document.getElementById("iq").value;
+        const iqError = document.getElementById("iqError");
+
+        if (iq < 50 || iq > 200) {
+          iqError.textContent = "IQ must be between 50 and 200";
+          return false;
+        } else {
+          iqError.textContent = "";
+          return true;
+        }
+      }
+
+        // Checkbox validation
+        function validateCheckbox(){
+        const checkbox = document.querySelector(
+          'input[type="checkbox"]:checked'
+        );
+        const checkboxError = document.getElementById("checkboxError");
+
+        if (!checkbox) {
+          checkboxError.textContent = "Please select at least one option.";
+          return false;
+        } else {
+          checkboxError.textContent = "";
+          return true;
+        }
+      }
+
+        // Essay validation
+        function validateEssay() {
+        const essay = document.getElementById("msg").value;
+        const essayError = document.getElementById("essayError");
+
+        if (essay.length < 5) {
+          essayError.textContent =
+            "The message must be at least 50 characters long";
+            return false;
+        } else {
+          essayError.textContent = "";
+          return true;
+        }
+      }
+      async function validate(event) {
+  event.preventDefault(); // Prevent default form submission
+
+  const isNameValid = validateName();
+  const isAddressValid = validateAddress();
+  const isPhoneValid = validatePhone();
+  const isIQValid = validateIQ();
+  const isCheckboxValid = validateCheckbox();
+  const isEssayValid = validateEssay();
+
+  if (
+    isNameValid &&
+    isAddressValid &&
+    isPhoneValid &&
+    isIQValid &&
+    isCheckboxValid &&
+    isEssayValid
+  ) {
+    // Collect form data into JSON
+    const formData = {
+      name: document.getElementById("name").value,
+      address: document.getElementById("address").value,
+      email: document.getElementById("email").value,
+      phone: document.getElementById("phone").value,
+      iq: parseInt(document.getElementById("iq").value),
+      gender: document.querySelector('input[name="gender"]:checked').value,
+      dateOfProposedOuting: document.getElementById("date").value,
+      reasonForDating: document.getElementById("msg").value,
+      references: document.getElementById("msg2").value,
+      politicalPersuasion: document.getElementById("dropdown").value,
+      educationLevelCompleted: document.getElementById("dropdown2").value,
+      hasTattoosOrPiercings: document.getElementById("ch1").checked,
+      isMoreThanTwoYearsOlder: document.getElementById("ch2").checked,
+      ownsPanelVanOrV8Ute: document.getElementById("ch3").checked,
+      worksFullTime: document.getElementById("ch4").checked,
+      parentsAreRich: document.getElementById("ch5").checked,
+      dateInWellLitLocation: document.getElementById("ch6").checked,
+    };
+
+    console.log(JSON.stringify(formData));
+
+    try {
+      const response = await fetch(
+        "https://api.jsonbin.io/v3/b/6795ca8dad19ca34f8f48428",
+        {
+          method: "put",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Master-Key":
+              "$2a$10$jYB5877QwGP.eBq/jslZfuE2Ok51YPROcYHc52K8uDhoENP0zwtlC",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+      const result = await response.json();
+      console.log(result);
+
+      if (response.ok) {
+        alert("Data posted successfully!");
+        document.forms["Form"].reset();
+        console.log("Response Data:", result);
+        fetchData();
+      } else {
+        alert("Failed to update data.");
+        console.error("Error Response:", result);
+      }
+    } catch (error) {
+      console.error("Network or API error:", error);
+      alert("An error occurred while posting data.");
+    }
+  }
+}
+
+async function displayData() {
+  try {
+    // Fetch the data from JSONBin
+    const response = await fetch('https://api.jsonbin.io/v3/b/6795ca8dad19ca34f8f48428', {
+      method: 'GET',
+      headers: {
+        'X-Master-Key': '$2a$10$jYB5877QwGP.eBq/jslZfuE2Ok51YPROcYHc52K8uDhoENP0zwtlC', // Replace with your actual API key
+      },
+    });
+
+    // Check if the response is OK
+    if (response.ok) {
+      const data = await response.json(); // Parse the JSON data
+
+      // Now we can display this data on the webpage
+      renderData(data.record); // Pass the data to a rendering function
+    } else {
+      console.error('Failed to fetch data:', response.status);
+    }
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+}
+
+// Function to render the data
+   async function fetchData() {
+        try {
+          const response = await fetch('https://api.jsonbin.io/v3/b/6795ca8dad19ca34f8f48428', 
+
+            {
+              method: "GET",
+              headers: {
+                'X-Master-Key': '$2a$10$jYB5877QwGP.eBq/jslZfuE2Ok51YPROcYHc52K8uDhoENP0zwtlC', // Replace with your actual API key
+
+              },
+            }
+          );
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+
+          const result = await response.json();
+          console.log("Fetched Data:", result);
+
+          // Clear the output div
+          const outputDiv = document.getElementById("output");
+          outputDiv.innerHTML = "";
+
+          // Append data dynamically to the output div
+          const data = result.record; // Assuming JSON Bin's structure contains record
+          const item = document.createElement("h1");
+          item.textContent = "OUTPUT:";
+          outputDiv.appendChild(item);
+          for (const key in data) {
+            if (data.hasOwnProperty(key)) {
+              const item = document.createElement("p");
+              item.textContent = `${key}: ${data[key]}`;
+              outputDiv.appendChild(item);
+            }
+          }
+        } catch (error) {
+          console.error("Error fetching data:", error);
+          const errorMessage = document.createElement("p");
+          errorMessage.textContent =
+            "Failed to fetch data. Please check the console for details.";
+          document.getElementById("output").appendChild(errorMessage);
+        }
+      }
+    </script>
+  </body>
+</html>
