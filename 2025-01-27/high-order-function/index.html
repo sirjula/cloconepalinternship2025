@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students Details</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+    <h1>Students Lists</h1>
+    <ul id="students-list"></ul>
+    <div id="students-details" style="display:none;">
+    <h1 id="students-name"></h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Subjects</th>
+          <th>Grade</th>
+        </tr>
+      </thead>
+      <tbody id="students-subject"></tbody>
+    </table>
+    <div class="summary" id="total-grade"></div>
+    <button class="back-button" id="back-button">Back to List</button>
+  </div>
+</div>
+
+<script type="module" src="./script.js"></script>
+
+
+</body>
+</html>
