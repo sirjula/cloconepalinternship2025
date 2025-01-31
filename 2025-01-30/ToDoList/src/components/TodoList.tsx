@@ -1,42 +1,36 @@
-import { useState } from "react";
-import { Task } from "../interfaces/types";
+import React, { useState } from "react";
+import { Todo } from "../interfaces/types";
+import TodoForm from "./TodoForm";
 import TodoItem from "./TodoItem";
+import "../styles.css";
 
 const TodoList: React.FC = () => {
-  const [tasks, setTasks] = useState<Task[]>([]);
-  const [taskTitle, setTaskTitle] = useState("");
+  const [todos, setTodos] = useState<Todo[]>([]);
 
-  const addTask = (title: string) => {
-    if (title.trim()) {
-      setTasks([...tasks, { id: Date.now(), title, completed: false }]);
-      setTaskTitle("");
-    }
+  const addTodo = (text: string) => {
+    const newTodo: Todo = { id: Date.now(), text, isEditing: false };
+    setTodos([...todos, newTodo]);
   };
 
-  const deleteTask = (id: number) => {
-    setTasks(tasks.filter((task) => task.id !== id));
+  const updateTodo = (id: number, newText: string) => {
+    setTodos(todos.map(todo => (todo.id === id ? { ...todo, text: newText } : todo)));
   };
 
-  const updateTask = (id: number, title: string) => {
-    setTasks(tasks.map((task) => (task.id === id ? { ...task, title } : task)));
+  const deleteTodo = (id: number) => {
+    setTodos(todos.filter(todo => todo.id !== id));
   };
 
   return (
-    <div>
-      <h2>To-Do List</h2>
-      <input
-        type="text"
-        placeholder="Enter task..."
-        value={taskTitle}
-        onChange={(e) => setTaskTitle(e.target.value)}
-      />
-      <button onClick={() => addTask(taskTitle)}>Add Task</button>
-
-      <ul>
-        {tasks.map((task) => (
-          <TodoItem key={task.id} task={task} deleteTask={deleteTask} updateTask={updateTask} />
-        ))}
-      </ul>
+    <div className="max-w-lg mx-auto p-4 bg-white shadow-lg rounded">
+      <h2 className="text-xl font-bold mb-4">To-Do List</h2>
+      <TodoForm addTodo={addTodo} />
+      <div className="mt-4 space-y-2">
+        {todos.length > 0 ? (
+          todos.map(todo => <TodoItem key={todo.id} todo={todo} updateTodo={updateTodo} deleteTodo={deleteTodo} />)
+        ) : (
+          <p className="text-gray-500">No tasks added yet.</p>
+        )}
+      </div>
     </div>
   );
 };
